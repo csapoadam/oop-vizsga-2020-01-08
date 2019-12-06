@@ -10,7 +10,7 @@
 #define KETTES_SZINT 1
 #define HARMAS_SZINT 1
 #define NEGYES_SZINT 1
-#define OTOS_SZINT 0
+#define OTOS_SZINT 1
 
 int main()
 {
@@ -44,7 +44,7 @@ int main()
 
 	if (keszlet->getQuantity(laptop) > 5) {
 		keszlet->rendel(laptop, 5);
-		std::cout << laptop->getName() << " mar csak " << keszlet->getQuantity(laptop) << " mennyisegben all rendelkezesre" << std::endl; // 15
+		std::cout << laptop->getName() << " mar csak " << keszlet->getQuantity(laptop) << " mennyisegben all rendelkezesre" << std::endl; // 10
 	}
 
 #if NEGYES_SZINT
@@ -56,6 +56,13 @@ int main()
 	}
 
 #if OTOS_SZINT
+	// u.az mint mobil2
+	Termek* mobil4 = new Mobil("Samsung", 800, true, true);
+	// egyszer mar hozzadtunk mobil2-bol 23-at:
+	keszlet->addTermekChecked(mobil4, 5); // vajon most 28 van belole?
+	// az implementaciohoz operator== fv megvalositasa szukseges
+	// + okosabb getQuantity is kell...
+	std::cout << mobil4->getName() << " " << keszlet->getQuantity(mobil4) << " mennyisegben all rendelkezesre" << std::endl; // 28
 
 #endif
 

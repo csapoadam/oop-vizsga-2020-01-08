@@ -15,6 +15,7 @@ public:
 	std::string& getGyarto() {
 		return gyarto;
 	}
+	int getAr() { return ar; }
 };
 
 class Laptop : public Termek {
@@ -38,7 +39,31 @@ public:
 		std::string s(getGyarto());
 		return s + " mobil";
 	}
+	bool getWifi() { return wifi; }
+	bool getLte() { return lte; }
 };
+
+bool operator==(Termek& t1, Termek&t2) {
+	// t1 es t2 ugyanaz a tipus kell, hogy legyenek!
+	// utana lehet ellenorizni, hogy minden passzol-e
+	Mobil* t1AsMobilPtr = dynamic_cast<Mobil*>(&t1);
+	Mobil* t2AsMobilPtr = dynamic_cast<Mobil*>(&t2);
+	if (t1AsMobilPtr && t2AsMobilPtr) {
+		return
+			(t1AsMobilPtr->getGyarto() == t2AsMobilPtr->getGyarto()) &&
+			(t1AsMobilPtr->getAr() == t2AsMobilPtr->getAr()) &&
+			(t1AsMobilPtr->getWifi() == t2AsMobilPtr->getWifi()) &&
+			(t1AsMobilPtr->getLte() == t2AsMobilPtr->getLte());
+	}
+	Laptop* t1AsLaptopPtr = dynamic_cast<Laptop*>(&t1);
+	Laptop* t2AsLaptopPtr = dynamic_cast<Laptop*>(&t2);
+	if (t1AsLaptopPtr && t2AsLaptopPtr) {
+		return
+			(t1AsLaptopPtr->getGyarto() == t2AsLaptopPtr->getGyarto()) &&
+			(t1AsLaptopPtr->getAr() == t2AsLaptopPtr->getAr());
+	}
+	return false;
+}
 
 class OutOfKeszletError : public std::exception {
 private:
@@ -64,10 +89,30 @@ public:
 	void addTermek(Termek* t, int mennyiseg) {
 		keszlet_vec.push_back(std::make_pair(t, mennyiseg));
 	}
+	void addTermekChecked(Termek* t, int mennyiseg) {
+		for (auto it = keszlet_vec.begin(); it != keszlet_vec.end(); ++it) {
+			if (*(*it).first == *t) {
+				(*it).second += mennyiseg;
+				return;
+			}
+		}
+		keszlet_vec.push_back(std::make_pair(t, mennyiseg));
+	}
+	// 4-es szintig jo:
+	/*
 	int getQuantity(Termek* t) {
 		for (auto current_pair : keszlet_vec) {
 			if (current_pair.first == t) {
 				return current_pair.second;
+			}
+		}
+		return 0;
+	}*/
+	// 5-os szinthez ez kell:
+	int getQuantity(Termek* t) {
+		for (auto it = keszlet_vec.begin(); it != keszlet_vec.end(); ++it) {
+			if (*((*it).first) == *t) {
+				return (*it).second;
 			}
 		}
 		return 0;
