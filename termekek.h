@@ -30,17 +30,15 @@ public:
 
 class Mobil : public Termek {
 private:
-	bool wifi;
-	bool lte;
+	std::string imei;
 public:
-	Mobil(std::string gyarto, int ar, bool wifi = true, bool lte = true) :
-		Termek(gyarto, ar), wifi(wifi), lte(lte) {}
+	Mobil(std::string gyarto, int ar, std::string imeinum) :
+		Termek(gyarto, ar), imei(imeinum) {}
 	virtual std::string getName() {
 		std::string s(getGyarto());
 		return s + " mobil";
 	}
-	bool getWifi() { return wifi; }
-	bool getLte() { return lte; }
+	std::string getImei() { return imei; }
 };
 
 bool operator==(Termek& t1, Termek&t2) {
@@ -52,8 +50,7 @@ bool operator==(Termek& t1, Termek&t2) {
 		return
 			(t1AsMobilPtr->getGyarto() == t2AsMobilPtr->getGyarto()) &&
 			(t1AsMobilPtr->getAr() == t2AsMobilPtr->getAr()) &&
-			(t1AsMobilPtr->getWifi() == t2AsMobilPtr->getWifi()) &&
-			(t1AsMobilPtr->getLte() == t2AsMobilPtr->getLte());
+			(t1AsMobilPtr->getImei() == t2AsMobilPtr->getImei());
 	}
 	Laptop* t1AsLaptopPtr = dynamic_cast<Laptop*>(&t1);
 	Laptop* t2AsLaptopPtr = dynamic_cast<Laptop*>(&t2);
