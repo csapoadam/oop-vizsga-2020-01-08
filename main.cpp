@@ -95,15 +95,20 @@ int main()
 	// + okosabb getQuantity is kell...
 	std::cout << mobil4->getName() << " " << keszlet->getQuantity(mobil4) << " mennyisegben all rendelkezesre" << std::endl; // 28
 
+	delete mobil4;
 #endif
 
 #endif
 
 #endif
 
-
+	delete laptop;
+	delete mobil1;
+	delete mobil2;
+	delete mobil3;
 
 #endif
 	std::cin.get();
     return 0;
 }
+
