@@ -298,7 +298,7 @@ public:
 		return osszes_legenyseg;
 	}
 
-	CsillagRombolo* checkMovable()
+	CsillagRombolo* checkImmobility()
 	{
 		for (const auto& v : csillagrombolok)
 		{
@@ -310,7 +310,7 @@ public:
 		return nullptr;
 	}
 
-	void checkedAddLegenyseg(CsillagRombolo* csillagromobolo, unsigned int legenyseg)
+	void addLegenysegChecked(CsillagRombolo* csillagromobolo, unsigned int legenyseg)
 	{
 		if (legenyseg < tartaleklegenyseg)
 		{
@@ -329,15 +329,27 @@ public:
 		}
 	}
 
-	void checkedTartalekbaHelyez(CsillagRombolo* csillagromobolo, unsigned int legenyseg)
+	void tartalekbaHelyezChecked(CsillagRombolo* csillagromobolo, unsigned int legenyseg)
 	{
-		if (legenyseg - csillagromobolo->getLegenyseg() > csillagromobolo->getMinLegenyseg())
+		if (csillagromobolo->getLegenyseg() < csillagromobolo->getMinLegenyseg() + legenyseg)
 		{
 			throw ErrorLegenyseg("Mukodeskeptelenne valna az: " + csillagromobolo->getName());
 		}
 		else
 		{
 			tartalekbaHelyez(csillagromobolo, legenyseg);
+		}
+	}
+
+	void removeTartalekosChecked(unsigned int legenyseg)
+	{
+		if (tartaleklegenyseg < legenyseg )
+		{
+			throw ErrorTartalekos("Nincs eleg tartalekos!");
+		}
+		else
+		{
+			tartaleklegenyseg -= legenyseg;
 		}
 	}
 
