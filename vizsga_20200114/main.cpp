@@ -5,7 +5,7 @@ FIGYELEM! A vizsga megkezdése előtt ezt olvassa át.
 -	A vizsga megvalósítható a main.cpp jelzett részein, illetve külön .cpp, .h és .hpp fájlokban.
 -	Memóriaszivárgás léte esetén a vizsga elégtelen (delete részek megváltoztatásával).
 -	Online (internet, stackoverflow, diasorok stb.) és offline (jegyzetek, könyvek) segédeszközök használhatóak. Ugyanakkor a munka nem kollaboratív, így más ember (padtárs, Skype, Viber, Facebook stb.) segítsége kizárva.
--	A main.cpp-ben sok assert függvényhívást láthat. Ez egy makró, ami egy feltételt vizsgál és annak nem teljesülése esetén futásidejű hibát dob. Az Ön implementációjának tesztelésére és a jegy meghatározására szolgál. Az assert feltételek megváltoztatása TILOS. Az assert részek idegilenesen az #define ELLENORZES makró 0-ra állításával kapcsolhatók ki, ami ajánlott is a fejlesztés során.
+-	A main.cpp-ben sok assert függvényhívást láthat. Ez egy makró, ami egy feltételt vizsgál és annak nem teljesülése esetén futásidejű hibát dob. Az Ön implementációjának tesztelésére és a jegy meghatározására szolgál. Az assert feltételek megváltoztatása TILOS. Az assert részek ideiglenesen az #define ELLENORZES makró 0-ra állításával kapcsolhatók ki, ami ajánlott is a fejlesztés során.
 -	A szabályok megsértése a vizsga automatikus sikertelenségét vonja maga után.
 A leírtakat megértettem és elfogadom:
 Név:
