@@ -35,7 +35,6 @@ public:
 
 	}
 
-	virtual double mozgas() = 0;
 	virtual unsigned int tuzero() = 0;
 
 	unsigned int getLegenyseg()
@@ -102,14 +101,7 @@ public:
 
 	}
 
-	virtual double mozgas()
-	{
-		if (checkUzemkepes())
-		{
-			return 1.0;
-		}
-		return 0.0;
-	}
+	
 
 	virtual unsigned int tuzero()
 	{
@@ -139,14 +131,7 @@ public:
 
 	}
 
-	virtual double mozgas()
-	{
-		if (checkUzemkepes())
-		{
-			return 1.5;
-		}
-		return 0.0;
-	}
+	
 
 	virtual unsigned int tuzero()
 	{
