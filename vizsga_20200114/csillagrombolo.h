@@ -297,7 +297,7 @@ public:
 
 	void addLegenysegChecked(CsillagRombolo* csillagromobolo, unsigned int legenyseg)
 	{
-		if (legenyseg < tartaleklegenyseg)
+		if (legenyseg <= tartaleklegenyseg)
 		{
 			if (legenyseg + csillagromobolo->getLegenyseg() > csillagromobolo->getMaxLegenyseg())
 			{
